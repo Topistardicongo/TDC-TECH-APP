@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My App</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+background: #0b0b0f;
+color: #fff;
+min-height: 100vh;
+padding: 24px 16px 40px;
+}
+header { text-align: center; margin-bottom: 28px; }
+.logo {
+width: 64px; height: 64px; border-radius: 16px;
+background: linear-gradient(135deg, #ff3b5c, #ff8a00);
+display: grid; place-items: center;
+font-weight: 800; font-size: 22px; margin: 0 auto 12px;
+}
+h1 { font-size: 26px; }
+p.sub { color: #aaa; margin-top: 6px; font-size: 14px; }
+.card {
+background: #16161d;
+border: 1px solid #2a2a35;
+border-radius: 16px;
+padding: 16px;
+margin-bottom: 12px;
+}
+.card h2 { font-size: 16px; margin-bottom: 6px; }
+.card p { color: #bbb; font-size: 14px; line-height: 1.4; }
+button {
+width: 100%;
+margin-top: 20px;
+border: 0;
+border-radius: 14px;
+padding: 16px;
+font-size: 16px;
+font-weight: 700;
+background: #fff;
+color: #000;
+}
+.count { text-align: center; margin-top: 16px; color: #888; }
+</style>
+</head>
+<body>
+<header>
+<div class="logo">A</div>
+<h1>My App</h1>
+<p class="sub">First version on GitHub</p>
+</header>
+
+<div class="card">
+<h2>Welcome</h2>
+<p>This page is your app. Change the name, text, and colors anytime.</p>
+</div>
+
+<div class="card">
+<h2>Next</h2>
+<p>Turn on GitHub Pages, then open the link on your iPhone.</p>
+</div>
+
+<button id="btn">Tap me</button>
+<p class="count" id="out">Taps: 0</p>
+
+<script>
+let n = 0;
+document.getElementById("btn").onclick = function () {
+n++;
+document.getElementById("out").textContent = "Taps: " + n;
+};
+</script>
+</body>
+</html>
