@@ -46,7 +46,7 @@ SERVICES = [
 COPY = {
     "en": {
         "intro": (
-            "TDC TECH®\n"
+            "TDC TECH®️\n"
             "Founded by Topistar Di Congo under TDC CREATIVES.\n\n"
             "We help anyone connect to social media and internet technology.\n"
             "Music distribution, ads, verification, press, virtual numbers, bots, and web work — from one dashboard.\n"
@@ -82,7 +82,7 @@ COPY = {
             "Keep this reference. Reply 3 for payment inquiry, 7 to track."
         ),
         "pay": (
-            "Payment goes to the TDC TECH® wallet. Minimum £5.\n"
+            "Payment goes to the TDC TECH®️ wallet. Minimum £5.\n"
             "Methods: CARD, USDT, ETH, BTC, MTN, AIRTEL.\n\n"
             "Reply with amount and method.\n"
             "Example: 50 MTN"
@@ -119,7 +119,7 @@ COPY = {
     },
     "fr": {
         "intro": (
-            "TDC TECH®\n"
+            "TDC TECH®️\n"
             "Fondé par Topistar Di Congo sous TDC CREATIVES.\n\n"
             "Nous aidons chacun à se connecter aux réseaux sociaux et à la technologie internet.\n"
             "Distribution musicale, pubs, vérification, presse, numéros virtuels, bots et web.\n"
@@ -154,7 +154,7 @@ COPY = {
             "Gardez la référence. 3 pour le paiement, 7 pour le suivi."
         ),
         "pay": (
-            "Paiement sur le portefeuille TDC TECH®. Minimum 5 £.\n"
+            "Paiement sur le portefeuille TDC TECH®️. Minimum 5 £.\n"
             "Moyens: CARD, USDT, ETH, BTC, MTN, AIRTEL.\n\n"
             "Répondez avec le montant et le moyen.\n"
             "Exemple: 50 MTN"
@@ -187,7 +187,7 @@ COPY = {
     },
     "sw": {
         "intro": (
-            "TDC TECH®\n"
+            "TDC TECH®️\n"
             "Ilianzishwa na Topistar Di Congo chini ya TDC CREATIVES.\n\n"
             "Tunasaidia mtu yeyote kuunganishwa na mitandao ya kijamii na teknolojia ya intaneti.\n"
             "Usambazaji wa muziki, matangazo, uthibitisho, habari, nambari pepe, boti, na tovuti.\n"
@@ -222,7 +222,7 @@ COPY = {
             "Hifadhi kumbukumbu. 3 malipo, 7 ufuatiliaji."
         ),
         "pay": (
-            "Malipo kwenye pochi ya TDC TECH®. Chini ni £5.\n"
+            "Malipo kwenye pochi ya TDC TECH®️. Chini ni £5.\n"
             "Njia: CARD, USDT, ETH, BTC, MTN, AIRTEL.\n\n"
             "Jibu kiasi na njia.\n"
             "Mfano: 50 MTN"
@@ -345,7 +345,6 @@ def handle(user, text):
     raw = (text or "").strip()
     low = raw.lower()
 
-    # Always introduce first for brand-new sessions
     if state.get("step") == "intro" or state.get("lang") is None:
         pick = {
             "1": "en",
@@ -359,7 +358,6 @@ def handle(user, text):
         }
         chosen = pick.get(low)
         if not chosen:
-            # First contact or invalid: send intro immediately
             store(sessions)
             return COPY["en"]["intro"]
         state["lang"] = chosen
@@ -373,7 +371,6 @@ def handle(user, text):
     if low in {"0", "menu", "start", "hi", "hello", "bonjour", "habari", "salama"}:
         state["step"] = "menu"
         store(sessions)
-        # Fast re-intro + menu on greeting words
         if low in {"hi", "hello", "bonjour", "habari", "salama"}:
             return c["intro"] + "\n\n" + c["menu"]
         return c["menu"]
@@ -530,7 +527,6 @@ def incoming():
                 body = ""
                 if message.get("type") == "text":
                     body = message.get("text", {}).get("body", "")
-                # Any message (including non-text) gets a fast intro reply
                 reply = handle(sender, body)
                 send_text(sender, reply)
     return "ok", 200
